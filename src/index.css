@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "googleSansRegular";
+  src: url("/fonts/google-sans-regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "googleSansBold";
+  src: url("/fonts/google-sans-bold.ttf") format("truetype");
+}
+
+.font-google-sans-regular {
+  font-family: "googleSansRegular", sans-serif;
+}
+.font-google-sans-bold {
+  font-family: "googleSansBold", sans-serif;
+}
