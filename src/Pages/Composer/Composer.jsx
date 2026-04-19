@@ -62,7 +62,7 @@ const Composer = () => {
   };
 
   return (
-    <div className="min-h-screen px-4 sm:px-6 lg:px-8 py-12 bg-gradient-to-b from-blue-50 to-gray-50">
+    <div className="min-h-screen px-4 sm:px-6 lg:px-8 py-12 bg-linear-to-b from-blue-50 to-gray-50">
       <div className="w-full max-w-3xl mx-auto">
 
         {/* Header */}

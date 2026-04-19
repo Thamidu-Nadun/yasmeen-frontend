@@ -88,11 +88,11 @@ a {
 
 /* Utility Classes */
 .bg-gradient-primary {
-  @apply bg-gradient-to-r from-blue-600 to-indigo-600;
+  @apply bg-linear-to-r from-blue-600 to-indigo-600;
 }
 
-.text-gradient {
-  @apply bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent;
+.text-linear {
+  @apply bg-linear-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent;
 }
 
 .btn-focus {
