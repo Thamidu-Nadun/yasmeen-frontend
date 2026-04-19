@@ -1,6 +1,8 @@
 import {CircleSlash, CircleSlash2} from 'lucide-react';
 import {ButtonLG} from '../../../Components/Buttons/Buttons';
 import {LabelSM} from '../../../Components/Labels/Labels';
+import {useContext} from 'react';
+import {LanguageContext} from '../../../context/Language';
 
 const content = {
   title: {
@@ -17,24 +19,36 @@ const content = {
   },
 };
 const Hero = () => {
+  const {language} = useContext (LanguageContext);
+  console.log (language);
+
   return (
-    <div className="w-full h-screen flex flex-col items-center justify-center gap-6 relative -translate-y-10">
+    <div className="w-full min-h-screen flex flex-col items-center justify-center gap-0.5 px-4 sm:px-6 lg:px-8">
       <LabelSM name="system active" />
-      <div className="relative -translate-y-10">
-        <h1 className="text-6xl font-bold text-center mt-10 capitalize w-250 font-google-sans-regular">
-          {content.title.en.map ((line, index) => (
-            <span key={index}>
-              {line}
-              <br />
-            </span>
-          ))}
+      <div className="flex flex-col items-center max-w-4xl">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center mt-6 sm:mt-10 capitalize leading-tight font-google-sans-regular">
+          {language === 'en'
+            ? content.title.en.map ((line, index) => (
+                <span key={index}>
+                  {line}
+                  <br />
+                </span>
+              ))
+            : content.title.jp.map ((line, index) => (
+                <span key={index}>
+                  {line}
+                  <br />
+                </span>
+              ))}
         </h1>
-        <p className="text-center mt-4 text-gray-600">
-          {content.description.en}
+        <p className="text-center text-sm sm:text-base md:text-lg mt-4 sm:mt-6 text-gray-600 max-w-2xl leading-relaxed">
+          {language === 'en' ? content.description.en : content.description.jp}
         </p>
       </div>
-      <div className="relative -translate-y-10">
-        <ButtonLG name="See How it works" />
+      <div className="mt-4 sm:mt-6">
+        <ButtonLG
+          name={language === 'en' ? content.button.en : content.button.jp}
+        />
       </div>
     </div>
   );
