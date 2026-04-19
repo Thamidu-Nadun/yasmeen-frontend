@@ -38,7 +38,7 @@ const Composer = () => {
   const [data, setData] = useState ({
     recipient: '',
     subject: '',
-    mail_type: 'Newsletter',
+    mail_type: 'newsletter',
     email_body: '',
   });
 
@@ -56,35 +56,40 @@ const Composer = () => {
     setData ({
       recipient: '',
       subject: '',
-      mail_type: 'Newsletter',
+      mail_type: 'newsletter',
       email_body: '',
     });
   };
+
   return (
-    <div className="px-4 sm:px-6 lg:px-8 py-10 flex flex-col items-center gap-10 bg-gray-100">
-      <div className="w-full max-w-3xl">
+    <div className="min-h-screen px-4 sm:px-6 lg:px-8 py-12 bg-gradient-to-b from-blue-50 to-gray-50">
+      <div className="w-full max-w-3xl mx-auto">
 
         {/* Header */}
-        <div className="mt-16">
+        <div className="mb-12 animate-fade-in">
           <LabelSM
             name={language === 'en' ? content.label.en : content.label.jp}
+            variant="primary"
           />
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mt-2">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mt-4 text-gray-900 font-google-sans-bold">
             {language === 'en' ? content.header.en : content.header.jp}
           </h2>
-          <p className="text-gray-500 mt-3 text-sm sm:text-base leading-relaxed">
+          <p className="text-gray-600 mt-4 text-base sm:text-lg leading-relaxed max-w-2xl">
             {language === 'en'
               ? content.description.en
               : content.description.jp}
           </p>
         </div>
 
-        {/* Form */}
-        <div id="form" className="space-y-6 mt-6">
+        {/* Form Card */}
+        <div
+          id="form"
+          className="bg-white rounded-2xl shadow-md-lg p-8 mb-10 space-y-7 animate-fade-in"
+        >
 
           {/* Recipient */}
-          <div>
-            <label className="block text-sm text-gray-600 mb-2">
+          <div className="space-y-2.5">
+            <label className="block text-sm font-semibold text-gray-800">
               {language === 'en'
                 ? content.form.recipient.en
                 : content.form.recipient.jp}
@@ -93,15 +98,15 @@ const Composer = () => {
               type="email"
               name="recipient"
               placeholder="john@gmail.com"
-              defaultValue={data.recipient}
+              value={data.recipient}
               onChange={handleChange}
-              className="w-full px-4 py-3 border border-gray-300 rounded-xl text-sm outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition"
+              className="w-full px-4 py-3 border border-gray-300 rounded-xl text-sm outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 placeholder-gray-400 bg-white hover:border-gray-400"
             />
           </div>
 
           {/* Subject */}
-          <div>
-            <label className="block text-sm text-gray-600 mb-2">
+          <div className="space-y-2.5">
+            <label className="block text-sm font-semibold text-gray-800">
               {language === 'en'
                 ? content.form.subject.en
                 : content.form.subject.jp}
@@ -110,24 +115,24 @@ const Composer = () => {
               type="text"
               name="subject"
               placeholder="Subject Line"
-              defaultValue={data.subject}
+              value={data.subject}
               onChange={handleChange}
-              className="w-full px-4 py-3 border border-gray-300 rounded-xl text-sm outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition"
+              className="w-full px-4 py-3 border border-gray-300 rounded-xl text-sm outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 placeholder-gray-400 bg-white hover:border-gray-400"
             />
           </div>
 
           {/* Mail Type */}
-          <div>
-            <label className="block text-sm text-gray-600 mb-2">
+          <div className="space-y-2.5">
+            <label className="block text-sm font-semibold text-gray-800">
               {language === 'en'
                 ? content.form.mailType.en
                 : content.form.mailType.jp}
             </label>
             <select
               name="mail_type"
-              defaultValue={data.mail_type}
+              value={data.mail_type}
               onChange={handleChange}
-              className="w-full px-4 py-3 border border-gray-300 rounded-xl text-sm bg-white outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition"
+              className="w-full px-4 py-3 border border-gray-300 rounded-xl text-sm bg-white outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 hover:border-gray-400 font-medium text-gray-700"
             >
               {content.form.mailTypeOptions.map (option => (
                 <option key={option.value} value={option.value}>
@@ -138,59 +143,61 @@ const Composer = () => {
           </div>
 
           {/* Body */}
-          <div>
-            <label className="block text-sm text-gray-600 mb-2">
+          <div className="space-y-2.5">
+            <label className="block text-sm font-semibold text-gray-800">
               {language === 'en' ? content.form.body.en : content.form.body.jp}
             </label>
             <textarea
               name="email_body"
-              placeholder="Start writing..."
-              defaultValue={data.email_body}
-              rows={6}
+              placeholder="Start writing your email content here..."
+              value={data.email_body}
+              rows={7}
               onChange={handleChange}
-              className="w-full px-4 py-3 border border-gray-300 rounded-xl text-sm outline-none resize-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition"
+              className="w-full px-4 py-3 border border-gray-300 rounded-xl text-sm outline-none resize-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 placeholder-gray-400 bg-white hover:border-gray-400 font-medium"
             />
           </div>
-        </div>
 
-        {/* Actions */}
-        <div className="mt-10 flex flex-col sm:flex-row gap-3">
-          <button
-            onClick={handleSubmit}
-            className="w-full sm:w-auto px-5 py-3 bg-blue-500 text-white rounded-xl hover:bg-blue-600 transition"
-          >
-            {language === 'en' ? content.form.save.en : content.form.save.jp}
-          </button>
-          <button
-            onClick={handleDelete}
-            className="w-full sm:w-auto px-5 py-3 text-red-500 border border-red-500 rounded-xl hover:bg-red-500 hover:text-white transition"
-          >
-            {language === 'en'
-              ? content.form.delete.en
-              : content.form.delete.jp}
-          </button>
+          {/* Actions */}
+          <div className="mt-10 flex flex-col sm:flex-row gap-4 pt-6 border-t border-gray-200">
+            <button
+              onClick={handleSubmit}
+              className="flex-1 sm:flex-none px-6 py-3 bg-linear-to-r from-blue-600 to-indigo-600 text-white rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 font-semibold shadow-md hover:shadow-lg active:scale-95"
+            >
+              {language === 'en' ? content.form.save.en : content.form.save.jp}
+            </button>
+            <button
+              onClick={handleDelete}
+              className="flex-1 sm:flex-none px-6 py-3 text-red-600 border-2 border-red-500 rounded-xl hover:bg-red-50 hover:border-red-600 transition-all duration-300 font-semibold active:scale-95"
+            >
+              {language === 'en'
+                ? content.form.delete.en
+                : content.form.delete.jp}
+            </button>
+          </div>
+
         </div>
 
       </div>
 
       {/* PRO TIP */}
-      <div className="w-lg bg-gray-300/40 flex items-center gap-3 px-4 py-2 rounded">
-        <Lightbulb
-          className="text-blue-500 bg-gray-100 px-2 py-1 rounded"
-          size={50}
-        />
-        <div>
-          <h5 className="font-bold text-sm">
-            {language === 'en'
-              ? content.proTip.title.en
-              : content.proTip.title.jp}
-            {' '}
-          </h5>
-          <p className="text-xs text-gray-600">
-            {language === 'en'
-              ? content.proTip.description.en
-              : content.proTip.description.jp}
-          </p>
+      <div className="w-full max-w-3xl mx-auto">
+        <div className="bg-linear-to-r from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center gap-4 px-6 py-5 shadow-sm-lg hover:shadow-md-lg transition-all duration-300 animate-fade-in">
+          <Lightbulb
+            className="shrink-0 text-blue-600 bg-white p-3 rounded-xl shadow-sm"
+            size={40}
+          />
+          <div className="flex-1">
+            <h5 className="font-bold text-base text-gray-900">
+              {language === 'en'
+                ? content.proTip.title.en
+                : content.proTip.title.jp}
+            </h5>
+            <p className="text-sm text-gray-700 mt-1">
+              {language === 'en'
+                ? content.proTip.description.en
+                : content.proTip.description.jp}
+            </p>
+          </div>
         </div>
       </div>
     </div>

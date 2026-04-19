@@ -55,7 +55,7 @@ const Dispatch = () => {
     <div className="w-full pt-10 flex flex-col items-center gap-8 px-4 sm:px-6 lg:px-8">
 
       {/* Stepper */}
-      <div className="mt-16 w-full max-w-4xl">
+      <div className="mt-2 w-full max-w-4xl">
         <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-8">
 
           {paths.map (item => (

@@ -14,11 +14,14 @@ const Dispatch = lazy (() => import ('./pages/Dispatch/Dispatch'));
 const App = () => {
   return (
     <LanguageProvider>
-      <div className="bg-gray-100 w-screen h-screen">
+      <div className="bg-white w-screen h-screen">
         <Suspense
           fallback={
-            <div className="w-full h-screen flex items-center justify-center">
-              Loading...
+            <div className="w-full h-screen flex items-center justify-center bg-gradient-to-b from-blue-50 to-white">
+              <div className="text-center">
+                <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mb-4"></div>
+                <p className="text-gray-600 font-semibold">Loading...</p>
+              </div>
             </div>
           }
         >

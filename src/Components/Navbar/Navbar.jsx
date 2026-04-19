@@ -1,6 +1,5 @@
 import {Fragment, useContext, useState} from 'react';
 import {Link} from 'react-router-dom';
-import {ButtonMD} from '../Buttons/Buttons';
 import {MenuIcon, PlusCircleIcon, XIcon} from 'lucide-react';
 import {LanguageContext} from '../../context/Language';
 
@@ -18,35 +17,35 @@ const Navbar = () => {
   return (
     <Fragment>
       {/* NAVBAR */}
-      <nav className="fixed top-0 left-0 right-0 z-50 overflow-hidden backdrop-blur-xl bg-white/60 border-b border-white/20 shadow-lg">
+      <nav className="fixed top-0 left-0 right-0 z-50 overflow-hidden backdrop-blur-xl bg-white/80 border-b border-blue-200/30 shadow-sm-lg">
         <div className="flex items-center justify-between px-4 sm:px-6 lg:px-8 h-16">
 
           {/* LOGO */}
           <Link
             to={'/'}
-            className="shrink-0 font-extrabold text-lg sm:text-xl tracking-tight bg-linear-to-r from-blue-600 to-indigo-500 bg-clip-text text-transparent"
+            className="shrink-0 font-extrabold text-lg sm:text-2xl tracking-tight text-gradient font-google-sans-bold hover:opacity-80 transition-opacity"
           >
-            Mail Craft
+            ♨️Mail Craft
           </Link>
 
           {/* DESKTOP MENU */}
-          <ol className="hidden md:flex items-center gap-6 lg:gap-8">
+          <ol className="hidden md:flex items-center gap-8">
             {menuItems.map (item => (
               <li
                 key={item.name}
                 onClick={() => setActive (item.name)}
-                className="relative group cursor-pointer text-sm font-medium capitalize transition-colors duration-300"
+                className="relative group cursor-pointer text-sm font-semibold capitalize transition-colors duration-300"
               >
                 <Link
                   to={item.path}
-                  className={`${active === item.name ? 'text-blue-600' : 'text-gray-600 group-hover:text-gray-900'}`}
+                  className={`${active === item.name ? 'text-blue-600' : 'text-gray-600 group-hover:text-gray-900'} transition-colors`}
                 >
                   {item.name}
                 </Link>
 
-                {/* underline */}
+                {/* underline animation */}
                 <span
-                  className={`absolute inset-x-0 -bottom-1 h-0.5 bg-linear-to-r from-blue-500 to-indigo-500 
+                  className={`absolute inset-x-0 -bottom-1 h-1 bg-linear-to-r from-blue-500 to-indigo-500 rounded-full
                   transform transition-transform duration-300 origin-left
                   ${active === item.name ? 'scale-x-100 opacity-100' : 'scale-x-0 opacity-0 group-hover:scale-x-100 group-hover:opacity-100'}`}
                 />
@@ -55,24 +54,24 @@ const Navbar = () => {
           </ol>
 
           {/* RIGHT SIDE */}
-          <div className="hidden md:flex items-center gap-3 lg:gap-4 shrink-0">
+          <div className="hidden md:flex items-center gap-4 shrink-0">
 
             {/* LANGUAGE */}
             <select
-              className="text-sm bg-white/70 backdrop-blur border border-gray-200 rounded-lg px-2.5 sm:px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 hover:border-blue-400 transition-all"
+              className="text-sm bg-white border-2 border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 hover:border-blue-400 transition-all font-semibold text-gray-700"
               onChange={toggleLanguage}
               value={language}
             >
-              <option value="en">EN</option>
-              <option value="jp">JP</option>
+              <option value="en">🇬🇧 EN</option>
+              <option value="jp">🇯🇵 JP</option>
             </select>
 
             {/* CTA BUTTON */}
             <Link
               to={'/composer'}
-              className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl text-sm font-medium text-white 
-              bg-linear-to-r from-blue-600 to-indigo-500 
-              hover:from-blue-700 hover:to-indigo-600 
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold text-white 
+              bg-linear-to-r from-blue-600 to-indigo-600 
+              hover:from-blue-700 hover:to-indigo-700 
               focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
               shadow-md hover:shadow-lg transition-all duration-300 active:scale-95"
               aria-label="Compose new message"
@@ -85,7 +84,7 @@ const Navbar = () => {
           {/* MOBILE TOGGLE */}
           <button
             onClick={() => setIsMobileMenuOpen (!isMobileMenuOpen)}
-            className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="md:hidden p-2 rounded-lg hover:bg-blue-100 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700"
             aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={isMobileMenuOpen}
           >
@@ -96,48 +95,49 @@ const Navbar = () => {
 
       {/* MOBILE MENU (SLIDE-IN) */}
       <div
-        className={`fixed top-0 right-0 h-screen w-full sm:w-80 bg-white/95 backdrop-blur-xl shadow-2xl z-40 
+        className={`fixed top-0 right-0 h-screen w-full sm:w-80 bg-white/95 backdrop-blur-xl shadow-lg-lg z-40 
         transform transition-transform duration-300 ease-in-out overflow-y-auto
         ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
         role="navigation"
         aria-label="Mobile menu"
       >
-        <div className="flex flex-col pt-20 px-4 sm:px-6 gap-6">
+        <div className="flex flex-col pt-24 px-6 gap-6">
 
           {menuItems.map (item => (
-            <button
+            <Link
               key={item.name}
+              to={item.path}
               onClick={() => {
                 setActive (item.name);
                 setIsMobileMenuOpen (false);
               }}
-              className={`text-base sm:text-lg font-medium capitalize cursor-pointer transition-colors text-left
-                ${active === item.name ? 'text-blue-600' : 'text-gray-700 hover:text-black'}`}
+              className={`text-lg font-semibold capitalize transition-colors
+                ${active === item.name ? 'text-blue-600' : 'text-gray-700 hover:text-blue-600'}`}
             >
               {item.name}
-            </button>
+            </Link>
           ))}
 
-          <div className="h-px bg-gray-200 my-2" />
+          <div className="h-px bg-gray-200 my-4" />
 
           <select
-            className="text-sm border border-gray-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1"
+            className="text-sm border-2 border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 font-semibold text-gray-700"
             onChange={toggleLanguage}
             value={language}
           >
-            <option value="en">EN</option>
-            <option value="jp">JP</option>
+            <option value="en">🇬🇧 English</option>
+            <option value="jp">🇯🇵 日本語</option>
           </select>
 
           <Link
             to={'/composer'}
-            className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-sm font-medium text-white 
-            bg-linear-to-r from-blue-600 to-indigo-500 
-            hover:from-blue-700 hover:to-indigo-600
+            className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-base font-semibold text-white 
+            bg-linear-to-r from-blue-600 to-indigo-600 
+            hover:from-blue-700 hover:to-indigo-700
             focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
             shadow-md hover:shadow-lg transition-all active:scale-95"
           >
-            <PlusCircleIcon size={18} />
+            <PlusCircleIcon size={20} />
             Compose
           </Link>
         </div>
@@ -147,8 +147,7 @@ const Navbar = () => {
       {isMobileMenuOpen &&
         <div
           onClick={() => setIsMobileMenuOpen (false)}
-          className="fixed inset-0 bg-black/30 backdrop-blur-xs z-30"
-          aria-hidden="true"
+          className="fixed inset-0 bg-black/30 backdrop-blur-sm z-30 transition-opacity"
         />}
     </Fragment>
   );

@@ -6,7 +6,9 @@ const Mainlayout = () => {
   return (
     <Fragment>
       <Navbar />
-      <Outlet />
+      <main className="pt-16 min-h-screen">
+        <Outlet />
+      </main>
     </Fragment>
   );
 };
