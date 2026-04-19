@@ -6,8 +6,8 @@ import {LanguageContext} from '../../context/Language';
 
 const menuItems = [
   {name: 'home', path: '/'},
-  {name: 'composer', path: '/composer'},
   {name: 'logs', path: '/logs'},
+  {name: 'dispatch', path: '/dispatch'},
 ];
 
 const Navbar = () => {
@@ -22,9 +22,12 @@ const Navbar = () => {
         <div className="flex items-center justify-between px-4 sm:px-6 lg:px-8 h-16">
 
           {/* LOGO */}
-          <h1 className="shrink-0 font-extrabold text-lg sm:text-xl tracking-tight bg-linear-to-r from-blue-600 to-indigo-500 bg-clip-text text-transparent">
+          <Link
+            to={'/'}
+            className="shrink-0 font-extrabold text-lg sm:text-xl tracking-tight bg-linear-to-r from-blue-600 to-indigo-500 bg-clip-text text-transparent"
+          >
             Mail Craft
-          </h1>
+          </Link>
 
           {/* DESKTOP MENU */}
           <ol className="hidden md:flex items-center gap-6 lg:gap-8">

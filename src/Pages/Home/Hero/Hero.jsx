@@ -5,6 +5,10 @@ import {useContext} from 'react';
 import {LanguageContext} from '../../../context/Language';
 
 const content = {
+  label: {
+    en: 'system active',
+    jp: 'システム稼働中',
+  },
   title: {
     en: ['Automate emails today.', 'Let AI handle them tomorrow.'],
     jp: ['今日からメールを自動化', '明日からAIに任せましょう。'],
@@ -24,7 +28,7 @@ const Hero = () => {
 
   return (
     <div className="w-full min-h-screen flex flex-col items-center justify-center gap-0.5 px-4 sm:px-6 lg:px-8">
-      <LabelSM name="system active" />
+      <LabelSM name={language === 'en' ? content.label.en : content.label.jp} />
       <div className="flex flex-col items-center max-w-4xl">
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center mt-6 sm:mt-10 capitalize leading-tight font-google-sans-regular">
           {language === 'en'

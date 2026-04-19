@@ -1,14 +1,56 @@
 import {FileText} from 'lucide-react';
 import PDFICON from '/img/pdf.png';
 import PdfRender from '../../Components/PdfRender/PdfRender';
+import {useContext} from 'react';
+import {LanguageContext} from '../../context/Language';
 
 const paths = [
-  {step: 1, name: 'configure', path: '/dispatch/configure', active: false},
-  {step: 2, name: 'review', path: '/dispatch/review', active: true},
-  {step: 3, name: 'dispatch', path: '/dispatch/dispatch', active: false},
+  {
+    step: 1,
+    name: {en: 'configure', jp: '構成する'},
+    path: '/dispatch/configure',
+    active: false,
+  },
+  {
+    step: 2,
+    name: {en: 'review', jp: 'レビュー'},
+    path: '/dispatch/review',
+    active: true,
+  },
+  {
+    step: 3,
+    name: {en: 'dispatch', jp: '急送'},
+    path: '/dispatch/dispatch',
+    active: false,
+  },
 ];
 
+const otherContent = {
+  title: {
+    en: 'Review Dispatch',
+    jp: '配送を確認する',
+  },
+  description: {
+    en: 'Please verify the email distribution details and generated document before final execution.',
+    jp: '「最終実行の前に、メール配信の詳細と生成されたドキュメントを確認してください。」',
+  },
+  recipient: {
+    en: 'Recipient',
+    jp: '受信者',
+  },
+  subjectLine: {
+    en: 'Subject Line',
+    jp: '件名',
+  },
+  dipatchBtn: {
+    en: 'Dispatch Email',
+    jp: 'メールを送る',
+  },
+};
+
 const Dispatch = () => {
+  const {language} = useContext (LanguageContext);
+
   return (
     <div className="w-full pt-10 flex flex-col items-center gap-8 px-4 sm:px-6 lg:px-8">
 
@@ -27,7 +69,7 @@ const Dispatch = () => {
               <span
                 className={`text-sm font-medium capitalize ${item.step === 1 ? 'text-blue-600' : 'text-gray-500'}`}
               >
-                {item.name}
+                {language === 'en' ? item.name.en : item.name.jp}
               </span>
             </div>
           ))}
@@ -43,10 +85,14 @@ const Dispatch = () => {
           {/* Header */}
           <div>
             <h2 className="text-xl font-semibold text-gray-800">
-              Review Dispatch
+              {language === 'en'
+                ? otherContent.title.en
+                : otherContent.title.jp}
             </h2>
             <p className="text-sm text-gray-500 mt-1">
-              Please verify the email distribution details and generated document before final execution.
+              {language === 'en'
+                ? otherContent.description.en
+                : otherContent.description.jp}
             </p>
           </div>
 
@@ -56,7 +102,9 @@ const Dispatch = () => {
             {/* Recipient */}
             <div>
               <label className="block text-sm text-gray-500 mb-1">
-                Recipient
+                {language === 'en'
+                  ? otherContent.recipient.en
+                  : otherContent.recipient.jp}
               </label>
               <div className="flex items-center text-gray-800">
                 <span className="text-blue-500 font-bold mr-1">@</span>
@@ -67,7 +115,9 @@ const Dispatch = () => {
             {/* Subject */}
             <div>
               <label className="block text-sm text-gray-500 mb-1">
-                Subject Line
+                {language === 'en'
+                  ? otherContent.subjectLine.en
+                  : otherContent.subjectLine.jp}
               </label>
               <div className="text-gray-800">
                 Monthly Report - 2026
@@ -84,7 +134,9 @@ const Dispatch = () => {
 
             {/* Action */}
             <button className="w-full sm:w-auto mt-2 px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition focus:ring-2 focus:ring-blue-500">
-              Dispatch Email
+              {language === 'en'
+                ? otherContent.dipatchBtn.en
+                : otherContent.dipatchBtn.jp}
             </button>
 
           </div>
