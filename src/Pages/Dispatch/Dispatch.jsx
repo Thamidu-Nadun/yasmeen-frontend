@@ -77,7 +77,7 @@ const Dispatch = () => {
       </div>
 
       {/* Main Layout */}
-      <div className="w-full max-w-6xl bg-white rounded-xl shadow-md grid grid-cols-1 lg:grid-cols-2 gap-8 p-6">
+      <div className="bg-white rounded-xl shadow-lg grid grid-cols-1 lg:grid-cols-2 gap-8 p-6">
 
         {/* LEFT SIDE */}
         <div className="flex flex-col gap-6">
@@ -97,7 +97,7 @@ const Dispatch = () => {
           </div>
 
           {/* Card */}
-          <div className="bg-white border rounded-lg p-5 space-y-5">
+          <div className="bg-white border rounded-lg p-5 space-y-5 max-w-md">
 
             {/* Recipient */}
             <div>
@@ -143,8 +143,8 @@ const Dispatch = () => {
         </div>
 
         {/* RIGHT SIDE - PDF PREVIEW */}
-        <div className="h-[70vh] lg:h-auto lg:sticky lg:top-10 border border-dashed rounded-lg p-3 overflow-hidden">
-          <div className="h-140 overflow-y-scroll">
+        <div className="h-[70vh] lg:h-auto lg:sticky lg:top-10 border border-dashed rounded-lg p-3 overflow-hidden w-155">
+          <div className="h-130 overflow-y-scroll overflow-x-hidden">
             <PdfRender url="https://raw.githubusercontent.com/Thamidu-Nadun/pdf_generation-yasmeen-travels/refs/heads/main/pdf/2026/04/06/nadunrz101@gmail.com.pdf" />
           </div>
         </div>

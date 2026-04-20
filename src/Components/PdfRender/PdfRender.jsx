@@ -25,7 +25,7 @@ const PdfRender = ({url}) => {
         onLoadError={err => console.log (err)}
       >
         {Array.from (new Array (numPages), (el, index) => (
-          <Page key={`page_${index + 1}`} pageNumber={index + 1} />
+          <Page key={`page_${index + 1}`} pageNumber={index + 1} width={600} />
         ))}
       </Document>
     </div>

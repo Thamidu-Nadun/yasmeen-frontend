@@ -1,5 +1,5 @@
-import {Fragment, useContext, useState} from 'react';
-import {Link} from 'react-router-dom';
+import {Fragment, useContext, useEffect, useState} from 'react';
+import {Link, useLocation} from 'react-router-dom';
 import {MenuIcon, PlusCircleIcon, XIcon} from 'lucide-react';
 import {LanguageContext} from '../../context/Language';
 
@@ -13,6 +13,15 @@ const Navbar = () => {
   const [active, setActive] = useState ('home');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState (false);
   const {language, toggleLanguage} = useContext (LanguageContext);
+  const path = useLocation ().pathname.split ('/')[1] || 'home';
+
+  useEffect (
+    () => {
+      const currentItem = menuItems.find (item => item.path === `/${path}`);
+      () => setActive (currentItem ? currentItem.name : 'home');
+    },
+    [path, setActive]
+  );
 
   return (
     <Fragment>
