@@ -2,6 +2,8 @@ import React, {Fragment, useContext, useState} from 'react';
 import {LabelSM} from '../../Components/Labels/Labels';
 import {Lightbulb} from 'lucide-react';
 import {LanguageContext} from '../../context/Language';
+import {createMail} from '../../services/emailService';
+import toast from 'react-hot-toast';
 
 const content = {
   label: {en: 'New Draft', jp: '新しいドラフト'},
@@ -50,6 +52,23 @@ const Composer = () => {
   const handleSubmit = e => {
     e.preventDefault ();
     console.log (data);
+    createMail (data.recipient, data.subject, data.email_body, data.mail_type)
+      .then (data => {
+        toast.success (
+          language === 'en' ? 'Draft saved successfully!' : 'ドラフトが正常に保存されました！'
+        );
+        setData ({
+          recipient: '',
+          subject: '',
+          mail_type: 'newsletter',
+          email_body: '',
+        });
+      })
+      .catch (error => {
+        toast.error (
+          language === 'en' ? 'Failed to save draft.' : 'ドラフトの保存に失敗しました。'
+        );
+      });
   };
 
   const handleDelete = () => {

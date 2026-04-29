@@ -5,6 +5,7 @@ import {Route, Routes} from 'react-router-dom';
 import {LanguageProvider} from './context/Language';
 import {lazy, Suspense} from 'react';
 import Mainlayout from './layout/Mainlayout';
+import {Toaster} from 'react-hot-toast';
 
 const Hero = lazy (() => import ('./pages/Home/Hero/Hero'));
 const Composer = lazy (() => import ('./pages/Composer/Composer'));
@@ -14,6 +15,13 @@ const Dispatch = lazy (() => import ('./pages/Dispatch/Dispatch'));
 const App = () => {
   return (
     <LanguageProvider>
+      <Toaster
+        position="bottom-right"
+        toastOptions={{
+          duration: 1500,
+          style: {background: '#333', color: '#fff'},
+        }}
+      />
       <div className="bg-white w-screen h-screen">
         <Suspense
           fallback={
