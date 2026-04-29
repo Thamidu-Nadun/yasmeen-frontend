@@ -6,12 +6,12 @@ import {LanguageProvider} from './context/Language';
 import {lazy, Suspense} from 'react';
 import Mainlayout from './layout/Mainlayout';
 import {Toaster} from 'react-hot-toast';
-import NotFound from './pages/ErrorPages/NotFound';
 
 const Hero = lazy (() => import ('./pages/Home/Hero/Hero'));
 const Composer = lazy (() => import ('./pages/Composer/Composer'));
 const Logs = lazy (() => import ('./pages/Logs/Logs'));
 const Dispatch = lazy (() => import ('./pages/Dispatch/Dispatch'));
+const NotFound = lazy (() => import ('./pages/ErrorPages/NotFound'));
 
 const App = () => {
   return (
