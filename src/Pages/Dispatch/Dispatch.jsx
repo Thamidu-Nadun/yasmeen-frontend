@@ -1,8 +1,13 @@
 import {FileText} from 'lucide-react';
 import PDFICON from '/img/pdf.png';
 import PdfRender from '../../Components/PdfRender/PdfRender';
-import {useContext} from 'react';
+import {useContext, useEffect, useState} from 'react';
 import {LanguageContext} from '../../context/Language';
+import {useParams} from 'react-router-dom';
+import {getEmailById} from '../../services/emailService';
+import toast from 'react-hot-toast';
+
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
 
 const paths = [
   {
@@ -50,6 +55,23 @@ const otherContent = {
 
 const Dispatch = () => {
   const {language} = useContext (LanguageContext);
+  const {id} = useParams ();
+  const numbericeId = Number (id);
+  const [emailData, setEmailData] = useState (null);
+
+  useEffect (() => {
+    getEmailById (numbericeId)
+      .then (data => {
+        setEmailData (data);
+        // console.log (data);
+      })
+      .catch (error => {
+        console.error ('Error fetching email data:', error);
+        toast.error (
+          language === 'en' ? 'Failed to load email data' : 'メールデータの読み込みに失敗しました'
+        );
+      });
+  }, []);
 
   return (
     <div className="w-full pt-10 flex flex-col items-center gap-8 px-4 sm:px-6 lg:px-8">
@@ -108,7 +130,7 @@ const Dispatch = () => {
               </label>
               <div className="flex items-center text-gray-800">
                 <span className="text-blue-500 font-bold mr-1">@</span>
-                jhon@x.com
+                {emailData ? emailData.recipient : 'jhon@x.com'}
               </div>
             </div>
 
@@ -120,7 +142,7 @@ const Dispatch = () => {
                   : otherContent.subjectLine.jp}
               </label>
               <div className="text-gray-800">
-                Monthly Report - 2026
+                {emailData ? emailData.subject : 'N/A'}
               </div>
             </div>
 
@@ -128,7 +150,7 @@ const Dispatch = () => {
             <div className="flex items-center gap-3 bg-gray-100 rounded-lg px-4 py-3 w-fit">
               <img src={PDFICON} alt="pdf icon" className="w-5 h-5" />
               <span className="text-sm font-semibold text-gray-800">
-                Annual Report.pdf
+                {emailData ? emailData.pdf_path.split (/[/\\]/).pop () : 'N/A'}
               </span>
             </div>
 
@@ -145,8 +167,15 @@ const Dispatch = () => {
         {/* RIGHT SIDE - PDF PREVIEW */}
         <div className="h-[70vh] lg:h-auto lg:sticky lg:top-10 border border-dashed rounded-lg p-3 overflow-hidden w-155">
           <div className="h-130 overflow-y-scroll overflow-x-hidden">
-            <PdfRender url="https://raw.githubusercontent.com/Thamidu-Nadun/pdf_generation-yasmeen-travels/refs/heads/main/pdf/2026/04/06/nadunrz101@gmail.com.pdf" />
-          </div>
+            {emailData ? (
+              <PdfRender url={`${API_URL}/pdf/download/${emailData.id}`} />
+            ) : (
+              <div className="flex flex-col items-center justify-center h-full text-gray-500">
+                <FileText className="w-12 h-12 mb-3" />
+                <p className="text-sm">No PDF available</p>
+              </div>
+             )}
+            </div>
         </div>
 
       </div>

@@ -6,6 +6,7 @@ import {LanguageProvider} from './context/Language';
 import {lazy, Suspense} from 'react';
 import Mainlayout from './layout/Mainlayout';
 import {Toaster} from 'react-hot-toast';
+import NotFound from './pages/ErrorPages/NotFound';
 
 const Hero = lazy (() => import ('./pages/Home/Hero/Hero'));
 const Composer = lazy (() => import ('./pages/Composer/Composer'));
@@ -38,7 +39,8 @@ const App = () => {
               <Route index element={<Hero />} />
               <Route path="/composer" element={<Composer />} />
               <Route path="/logs" element={<Logs />} />
-              <Route path="/dispatch/*" element={<Dispatch />} />
+              <Route path="/dispatch/:id" element={<Dispatch />} />
+              <Route path="*" element={<NotFound />} />
             </Route>
           </Routes>
         </Suspense>
