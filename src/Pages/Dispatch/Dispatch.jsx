@@ -71,7 +71,7 @@ const Dispatch = () => {
           language === 'en' ? 'Failed to load email data' : 'メールデータの読み込みに失敗しました'
         );
       });
-  }, []);
+  }, [language, numbericeId]);
 
   return (
     <div className="w-full pt-10 flex flex-col items-center gap-8 px-4 sm:px-6 lg:px-8">
