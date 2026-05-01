@@ -6,7 +6,7 @@ import {LanguageContext} from '../../context/Language';
 const menuItems = [
   {name: 'home', path: '/'},
   {name: 'logs', path: '/logs'},
-  {name: 'dispatch', path: '/dispatch'},
+  {name: 'Emails', path: '/emails'},
 ];
 
 const Navbar = () => {

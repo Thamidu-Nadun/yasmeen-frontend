@@ -3,8 +3,8 @@ import PDFICON from '/img/pdf.png';
 import PdfRender from '../../Components/PdfRender/PdfRender';
 import {useContext, useEffect, useState} from 'react';
 import {LanguageContext} from '../../context/Language';
-import {useParams} from 'react-router-dom';
-import {getEmailById} from '../../services/emailService';
+import {Link, useParams} from 'react-router-dom';
+import {getEmailById, sendMailToClient} from '../../services/emailService';
 import toast from 'react-hot-toast';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
@@ -12,20 +12,20 @@ const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
 const paths = [
   {
     step: 1,
-    name: {en: 'configure', jp: '構成する'},
-    path: '/dispatch/configure',
+    name: {en: 'email list', jp: 'メールリスト'},
+    path: '/emails',
     active: false,
   },
   {
     step: 2,
     name: {en: 'review', jp: 'レビュー'},
-    path: '/dispatch/review',
+    path: '/dispatch/',
     active: true,
   },
   {
     step: 3,
     name: {en: 'dispatch', jp: '急送'},
-    path: '/dispatch/dispatch',
+    path: '/send',
     active: false,
   },
 ];
@@ -57,7 +57,8 @@ const Dispatch = () => {
   const {language} = useContext (LanguageContext);
   const {id} = useParams ();
   const numbericeId = Number (id);
-  const [emailData, setEmailData] = useState (null);
+  const [emailData, setEmailData] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect (() => {
     getEmailById (numbericeId)
@@ -73,6 +74,16 @@ const Dispatch = () => {
       });
   }, [language, numbericeId]);
 
+  const handleDispatchMail = (id) => { 
+    setLoading(true);
+    sendMailToClient(id).then(() => {
+      toast.success(language === 'en' ? 'Email dispatched successfully' : 'メールが正常に送信されました');
+    }).catch(error => {
+      console.error('Error dispatching email:', error);
+      toast.error(language === 'en' ? 'Failed to dispatch email' : 'メールの送信に失敗しました');
+    }).finally(() => setLoading(false));
+  };
+
   return (
     <div className="w-full pt-10 flex flex-col items-center gap-8 px-4 sm:px-6 lg:px-8">
 
@@ -80,21 +91,24 @@ const Dispatch = () => {
       <div className="mt-2 w-full max-w-4xl">
         <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-8">
 
-          {paths.map (item => (
-            <div key={item.step} className="flex items-center gap-3">
-              <div
-                className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium
+          {paths.map(item => {
+            let path = item.path === '/dispatch/' ? `/dispatch/${id}` : item.path;
+            return (
+              <Link key={item.step} to={path} className="flex items-center gap-3">
+                <div
+                  className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium
                     ${item.active ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-500'}`}
-              >
-                {item.step}
-              </div>
-              <span
-                className={`text-sm font-medium capitalize ${item.step === 1 ? 'text-blue-600' : 'text-gray-500'}`}
-              >
-                {language === 'en' ? item.name.en : item.name.jp}
-              </span>
-            </div>
-          ))}
+                >
+                  {item.step}
+                </div>
+                <span
+                  className={`text-sm font-medium capitalize ${item.step === 1 ? 'text-blue-600' : 'text-gray-500'}`}
+                >
+                  {language === 'en' ? item.name.en : item.name.jp}
+                </span>
+              </Link>
+            );
+          })}
         </div>
       </div>
 
@@ -155,10 +169,14 @@ const Dispatch = () => {
             </div>
 
             {/* Action */}
-            <button className="w-full sm:w-auto mt-2 px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition focus:ring-2 focus:ring-blue-500">
-              {language === 'en'
+            <button
+              onClick={() => handleDispatchMail(emailData.id)}
+              className="w-full sm:w-auto mt-2 px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition focus:ring-2 focus:ring-blue-500">
+              {loading ? (
+                <div className="inline-block animate-spin rounded-full h-4 w-4 border-b-2 border-white" />
+              ) : language === 'en'
                 ? otherContent.dipatchBtn.en
-                : otherContent.dipatchBtn.jp}
+                  : otherContent.dipatchBtn.jp}
             </button>
 
           </div>

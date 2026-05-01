@@ -28,14 +28,14 @@ const getEmailById = async (id) => {
     }
 };
 
-const createMail = async (recipient, subject, body, mailType) => {
+const createMail = async (recipient, subject, body, mailType, language) => {
     try {
         const response = await fetch(`${API_URL}/email`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ recipient, subject, body, mail_type: mailType }),
+            body: JSON.stringify({ recipient, subject, body, mail_type: mailType, language }),
         });
         if (!response.ok) {
             throw new Error('Failed to create email');
@@ -48,4 +48,34 @@ const createMail = async (recipient, subject, body, mailType) => {
     }
 };
 
-export { getMails, getEmailById, createMail };
+const deleteMail = async (id) => {
+    try {
+        const response = await fetch(`${API_URL}/email/${id}`, {
+            method: 'DELETE',
+        });
+        if (!response.ok) {
+            throw new Error('Failed to delete email');
+        }
+        return true;
+    } catch (error) {
+        console.error('Error deleting email:', error);
+        throw error;
+    }
+};
+
+const sendMailToClient = async (id) => {
+    try {
+        const response = await fetch(`${API_URL}/email/send/${id}`, {
+            method: 'POST',
+        });
+        if (!response.ok) {
+            throw new Error('Failed to send email to client');
+        }
+        return true;
+    } catch (error) {
+        console.error('Error sending email to client:', error);
+        throw error;
+    }
+};
+
+export { getMails, getEmailById, createMail, deleteMail, sendMailToClient };

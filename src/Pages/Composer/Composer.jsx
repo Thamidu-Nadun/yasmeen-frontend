@@ -23,12 +23,17 @@ const content = {
     recipient: {en: 'Recipient', jp: '受信者'},
     subject: {en: 'Subject', jp: '件名'},
     mailType: {en: 'Mail Type', jp: 'メールタイプ'},
+    language: {en: 'Language', jp: '言語'},
     body: {en: 'Body', jp: '本文'},
     mailTypeOptions: [
       {value: 'newsletter', label: {en: 'Newsletter', jp: 'ニュースレター'}},
       {value: 'promotion', label: {en: 'Promotion', jp: 'プロモーション'}},
       {value: 'followUp', label: {en: 'Follow-up', jp: 'フォローアップ'}},
       {value: 'confirmation', label: {en: 'Confirmation', jp: '確認'}},
+    ],
+    languageOptions: [
+      {value: 'en', label: {en: 'English', jp: '英語'}},
+      {value: 'jp', label: {en: 'Japanese', jp: '日本語'}},
     ],
     save: {en: 'Save Draft', jp: 'ドラフトを保存'},
     delete: {en: 'Delete Draft', jp: 'ドラフトを削除'},
@@ -42,7 +47,9 @@ const Composer = () => {
     subject: '',
     mail_type: 'newsletter',
     email_body: '',
+    language: 'en',
   });
+  const [loading, setLoading] = useState (false);
 
   const handleChange = e => {
     const {name, value} = e.target;
@@ -51,8 +58,15 @@ const Composer = () => {
 
   const handleSubmit = e => {
     e.preventDefault ();
-    console.log (data);
-    createMail (data.recipient, data.subject, data.email_body, data.mail_type)
+    setLoading (true);
+    // console.log (data);
+    createMail (
+      data.recipient,
+      data.subject,
+      data.email_body,
+      data.mail_type,
+      data.language
+    )
       .then (data => {
         toast.success (
           language === 'en' ? 'Draft saved successfully!' : 'ドラフトが正常に保存されました！'
@@ -62,13 +76,15 @@ const Composer = () => {
           subject: '',
           mail_type: 'newsletter',
           email_body: '',
+          language: 'en',
         });
       })
       .catch (error => {
         toast.error (
           language === 'en' ? 'Failed to save draft.' : 'ドラフトの保存に失敗しました。'
         );
-      });
+      })
+      .finally (() => setLoading (false));
   };
 
   const handleDelete = () => {
@@ -77,6 +93,7 @@ const Composer = () => {
       subject: '',
       mail_type: 'newsletter',
       email_body: '',
+      language: 'en',
     });
   };
 
@@ -161,6 +178,27 @@ const Composer = () => {
             </select>
           </div>
 
+          {/* Language Type */}
+          <div className="space-y-2.5">
+            <label className="block text-sm font-semibold text-gray-800">
+              {language === 'en'
+                ? content.form.language.en
+                : content.form.language.jp}
+            </label>
+            <select
+              name="language"
+              value={data.language}
+              onChange={handleChange}
+              className="w-full px-4 py-3 border border-gray-300 rounded-xl text-sm bg-white outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 hover:border-gray-400 font-medium text-gray-700"
+            >
+              {content.form.languageOptions.map (option => (
+                <option key={option.value} value={option.value}>
+                  {language === 'en' ? option.label.en : option.label.jp}
+                </option>
+              ))}
+            </select>
+          </div>
+
           {/* Body */}
           <div className="space-y-2.5">
             <label className="block text-sm font-semibold text-gray-800">
@@ -182,7 +220,11 @@ const Composer = () => {
               onClick={handleSubmit}
               className="flex-1 sm:flex-none px-6 py-3 bg-linear-to-r from-blue-600 to-indigo-600 text-white rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 font-semibold shadow-md hover:shadow-lg active:scale-95"
             >
-              {language === 'en' ? content.form.save.en : content.form.save.jp}
+              {loading
+                ? <div className="inline-block animate-spin rounded-full h-4 w-4 border-b-2 border-white" />
+                : language === 'en'
+                    ? content.form.save.en
+                    : content.form.save.jp}
             </button>
             <button
               onClick={handleDelete}
