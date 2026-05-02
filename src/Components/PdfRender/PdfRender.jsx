@@ -1,8 +1,8 @@
 import {useState} from 'react';
 import {Document, pdfjs, Page} from 'react-pdf';
-import worker from 'pdfjs-dist/build/pdf.worker.min.mjs?url';
+// import worker from 'pdfjs-dist/build/pdf.worker.min.mjs?url';
 
-pdfjs.GlobalWorkerOptions.workerSrc = worker;
+pdfjs.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
 
 const PdfRender = ({url}) => {
   const [numPages, setNumPages] = useState (null);
