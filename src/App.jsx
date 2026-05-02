@@ -8,11 +8,11 @@ import Mainlayout from './layout/Mainlayout';
 import {Toaster} from 'react-hot-toast';
 import Emails from './pages/Emails/Emails';
 
-const Hero = lazy (() => import ('./pages/Home/Hero/Hero'));
-const Composer = lazy (() => import ('./pages/Composer/Composer'));
-const Logs = lazy (() => import ('./pages/Logs/Logs'));
-const Dispatch = lazy (() => import ('./pages/Dispatch/Dispatch'));
-const NotFound = lazy (() => import ('./pages/ErrorPages/NotFound'));
+const Hero = lazy (() => import ('./pages/Home/Hero/Hero.jsx'));
+const Composer = lazy (() => import ('./pages/Composer/Composer.jsx'));
+const Logs = lazy (() => import ('./pages/Logs/Logs.jsx'));
+const Dispatch = lazy (() => import ('./pages/Dispatch/Dispatch.jsx'));
+const NotFound = lazy (() => import ('./pages/ErrorPages/NotFound.jsx'));
 
 const App = () => {
   return (
