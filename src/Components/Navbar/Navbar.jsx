@@ -1,6 +1,6 @@
 import {Fragment, useContext, useEffect, useState} from 'react';
 import {Link, useLocation} from 'react-router-dom';
-import {MenuIcon, PlusCircleIcon, XIcon} from 'lucide-react';
+import {Flame, MenuIcon, PlusCircleIcon, XIcon} from 'lucide-react';
 import {LanguageContext} from '../../context/Language';
 
 const menuItems = [
@@ -34,7 +34,14 @@ const Navbar = () => {
             to={'/'}
             className="shrink-0 font-extrabold text-lg sm:text-2xl tracking-tight text-gradient font-google-sans-bold hover:opacity-80 transition-opacity"
           >
-            ♨️Mail Craft
+            <span className="flex items-center gap-2">
+              <Flame
+                size={35}
+                className="bg-blue-500 px-2 py-1 rounded-lg text-white text-2xl"
+              />
+              {' '}
+              Mail Craft
+            </span>
           </Link>
 
           {/* DESKTOP MENU */}
