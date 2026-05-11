@@ -24,7 +24,7 @@ const App = () => {
           style: {background: '#333', color: '#fff'},
         }}
       />
-      <div className="bg-white w-screen h-screen">
+      <div className="bg-white w-full min-h-screen overflow-x-hidden">
         <Suspense
           fallback={
             <div className="w-full h-screen flex items-center justify-center bg-linear-to-b from-blue-50 to-white">

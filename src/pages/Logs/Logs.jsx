@@ -70,7 +70,7 @@ const Logs = () => {
   }, []);
   return (
     <div className="min-h-screen bg-linear-to-br from-gray-50 to-gray-200 py-10 px-4">
-      <div className="max-w-6xl mx-auto mt-20">
+      <div className="max-w-7xl mx-auto mt-20">
         {/* Header */}
         <div className="text-center mb-10">
           <h1 className="text-4xl font-bold text-gray-800">
@@ -129,7 +129,8 @@ const Logs = () => {
 
                         {/* Type */}
                         <td className="px-6 py-4">
-                          <span className="px-3 py-1 text-xs font-medium rounded-full bg-blue-100 text-blue-700">
+                          <span className="wrap-break-word px-3 py-1 text-xs font-medium rounded-full bg-blue-100 text-blue-700
+                          ">
                             {log.type}
                           </span>
                         </td>

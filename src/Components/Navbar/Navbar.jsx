@@ -111,7 +111,7 @@ const Navbar = () => {
 
       {/* MOBILE MENU (SLIDE-IN) */}
       <div
-        className={`fixed top-0 right-0 h-screen w-full sm:w-80 bg-white/95 backdrop-blur-xl shadow-lg-lg z-40 
+        className={`fixed top-0 right-0 h-screen w-80 max-w-full bg-white/95 backdrop-blur-xl shadow-lg-lg z-40 
         transform transition-transform duration-300 ease-in-out overflow-y-auto
         ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
         role="navigation"
