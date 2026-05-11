@@ -117,10 +117,10 @@ const Emails = () => {
                     </td>
 
                     <td className="px-4 sm:px-6 py-3 text-sm">
-                      <div className="flex flex-col gap-2">
+                      <div className="flex flex-col items-center gap-2">
                         <Link
                           to={`/dispatch/${email.id}`}
-                          className="p-1.5 text-xs text-center font-medium bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition"
+                          className="p-1.5 w-20 text-xs text-center font-medium bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition"
                         >
                           {language === 'en'
                             ? content.table.view.en
@@ -129,7 +129,7 @@ const Emails = () => {
 
                         <div
                           onClick={() => handleDelete (email.id)}
-                          className="p-1.5 text-xs text-center font-medium bg-red-500 hover:bg-red-600 text-white rounded-lg transition"
+                          className="p-1.5 w-20 text-xs text-center font-medium bg-red-500 hover:bg-red-600 text-white rounded-lg transition"
                         >
                           {language === 'en'
                             ? content.table.delete.en

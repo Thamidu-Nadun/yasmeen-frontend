@@ -1,0 +1,16 @@
+.lang-select,
+::picker(select) {
+  appearance: base-select;
+}
+
+.lang-select option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.lang-select selectedContent {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}

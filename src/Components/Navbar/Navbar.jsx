@@ -2,6 +2,7 @@ import {Fragment, useContext, useEffect, useState} from 'react';
 import {Link, useLocation} from 'react-router-dom';
 import {Flame, MenuIcon, PlusCircleIcon, XIcon} from 'lucide-react';
 import {LanguageContext} from '../../context/Language';
+import './Navbar.css';
 
 const menuItems = [
   {name: 'home', path: '/'},
@@ -14,6 +15,7 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState (false);
   const {language, toggleLanguage} = useContext (LanguageContext);
   const path = useLocation ().pathname.split ('/')[1] || 'home';
+  const isCustomSelectSupported = CSS.supports ('appearance', 'base-select');
 
   useEffect (
     () => {
@@ -73,14 +75,33 @@ const Navbar = () => {
           <div className="hidden md:flex items-center gap-4 shrink-0">
 
             {/* LANGUAGE */}
-            <select
-              className="text-sm bg-white border-2 border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 hover:border-blue-400 transition-all font-semibold text-gray-700"
-              onChange={toggleLanguage}
-              value={language}
-            >
-              <option value="en">🇬🇧 EN</option>
-              <option value="jp">🇯🇵 JP</option>
-            </select>
+            {isCustomSelectSupported
+              ? <select
+                  className="lang-select text-sm bg-white border-2 border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 hover:border-blue-400 transition-all font-semibold text-gray-700"
+                  onChange={toggleLanguage}
+                  value={language}
+                >
+                  <button>
+                    <selectedcontent />
+                  </button>
+
+                  <option value="en">
+                    <img src="/usa-flag.webp" alt="" className="w-5 h-5" />
+                    <span>EN</span>
+                  </option>
+                  <option value="jp">
+                    <img src="/japan-flag.png" alt="" className="w-5 h-5" />
+                    <span>JP</span>
+                  </option>
+                </select>
+              : <select
+                  className="text-sm border-2 border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 font-semibold text-gray-700"
+                  onChange={toggleLanguage}
+                  value={language}
+                >
+                  <option value="en">🇬🇧 English</option>
+                  <option value="jp">🇯🇵 日本語</option>
+                </select>}
 
             {/* CTA BUTTON */}
             <Link
