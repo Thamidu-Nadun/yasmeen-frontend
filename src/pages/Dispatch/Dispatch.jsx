@@ -84,6 +84,24 @@ const Dispatch = () => {
     }).finally(() => setLoading(false));
   };
 
+  // loading state
+  if (loading) {
+    return (
+      <div className="w-full h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900"></div>
+      </div>
+    );
+  }
+
+  // failed to load email data
+  if (!emailData) {
+    return (
+      <div className="w-full h-screen flex items-center justify-center text-gray-500">
+        <p className="text-lg">{language === 'en' ? 'No email data found' : 'メールデータが見つかりません'}</p>
+      </div>
+    );
+  }
+  
   return (
     <div className="w-full pt-10 flex flex-col items-center gap-8 px-4 sm:px-6 lg:px-8">
 
@@ -163,9 +181,12 @@ const Dispatch = () => {
             {/* File */}
             <div className="flex items-center gap-3 bg-gray-100 rounded-lg px-4 py-3 w-fit">
               <img src={PDFICON} alt="pdf icon" className="w-5 h-5" />
-              <span className="text-sm font-semibold text-gray-800">
+              <Link className="text-sm font-semibold text-blue-950 hover:text-blue-600 hover:underline transition"
+                to={`${API_URL}/pdf/download/${emailData.id}`}
+                target='_blank'
+              >
                 {emailData ? emailData.pdf_path.split (/[/\\]/).pop () : 'N/A'}
-              </span>
+              </Link>
             </div>
 
             {/* Action */}
@@ -183,11 +204,11 @@ const Dispatch = () => {
         </div>
 
         {/* RIGHT SIDE - PDF PREVIEW */}
-        <div className="h-[70vh] lg:h-auto lg:sticky lg:top-10 border border-dashed rounded-lg p-3 overflow-hidden w-155">
+        <div className="h-[70vh] lg:h-auto lg:sticky lg:top-10 border border-dashed rounded-lg p-3 overflow-hidden w-155 relative">
           <div className="h-130 overflow-y-scroll overflow-x-hidden">
             {emailData ? (
               <PdfRender url={`${API_URL}/pdf/download/${emailData.id}`} />
-            ) : (
+                ) : (
               <div className="flex flex-col items-center justify-center h-full text-gray-500">
                 <FileText className="w-12 h-12 mb-3" />
                 <p className="text-sm">No PDF available</p>
