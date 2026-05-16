@@ -1,4 +1,4 @@
-import {FileText} from 'lucide-react';
+import {Download, FileText} from 'lucide-react';
 import PDFICON from '/img/pdf.png';
 import PdfRender from '../../Components/PdfRender/PdfRender';
 import {useContext, useEffect, useState} from 'react';
@@ -179,14 +179,17 @@ const Dispatch = () => {
             </div>
 
             {/* File */}
-            <div className="flex items-center gap-3 bg-gray-100 rounded-lg px-4 py-3 w-fit">
-              <img src={PDFICON} alt="pdf icon" className="w-5 h-5" />
-              <Link className="text-sm font-semibold text-blue-950 hover:text-blue-600 hover:underline transition"
-                to={`${API_URL}/pdf/download/${emailData.id}`}
-                target='_blank'
-              >
-                {emailData ? emailData.pdf_path.split (/[/\\]/).pop () : 'N/A'}
-              </Link>
+            <div className="flex items-center gap-5 bg-gray-100 rounded-lg px-4 py-3 w-fit">
+              <div className='flex items-center justify-between gap-2'>
+                <img src={PDFICON} alt="pdf icon" className="w-5 h-5" />
+                <Link className="flex items-center gap-2 text-sm font-semibold text-blue-950 hover:text-blue-600 hover:underline transition"
+                  to={`${API_URL}/pdf/download/${emailData.id}`}
+                  target='_blank'
+                >
+                  {emailData ? emailData.pdf_path.split (/[/\\]/).pop () : 'N/A'}
+                  <Download className="w-4 h-4 opacity-70 transition-colors" />
+                </Link>
+              </div>
             </div>
 
             {/* Action */}
