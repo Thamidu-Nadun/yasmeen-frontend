@@ -10,7 +10,7 @@ const Footer = () => {
   const {language} = useContext (LanguageContext);
   return (
     <footer>
-      <div className="w-full bg-blue-600/90 text-white py-4 text-center">
+      <div className="w-full bg-blue-600/90 text-white py-2 text-center">
         <p className="text-sm">
           {language === 'en' ? footerContent.en : footerContent.jp}
         </p>

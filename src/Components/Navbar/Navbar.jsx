@@ -5,9 +5,9 @@ import {LanguageContext} from '../../context/Language';
 import './Navbar.css';
 
 const menuItems = [
-  {name: 'home', path: '/'},
-  {name: 'logs', path: '/logs'},
-  {name: 'Emails', path: '/emails'},
+  {name: 'home', path: '/', ariaLabel: 'Link to home page'},
+  {name: 'logs', path: '/logs', ariaLabel: 'Link to logs page'},
+  {name: 'Emails', path: '/emails', ariaLabel: 'Link to emails page'},
 ];
 
 const Navbar = () => {
@@ -29,7 +29,10 @@ const Navbar = () => {
     <Fragment>
       {/* NAVBAR */}
       <nav className="fixed top-0 left-0 right-0 z-50 overflow-hidden backdrop-blur-xl bg-white/80 border-b border-blue-200/30 shadow-sm-lg">
-        <div className="flex items-center justify-between px-4 sm:px-6 lg:px-8 h-16">
+        <div
+          aria-label="company logo"
+          className="flex items-center justify-between px-4 sm:px-6 lg:px-8 h-16"
+        >
 
           {/* LOGO */}
           <Link
@@ -51,6 +54,7 @@ const Navbar = () => {
             {menuItems.map (item => (
               <li
                 key={item.name}
+                aria-label={item.ariaLabel}
                 onClick={() => setActive (item.name)}
                 className="relative group cursor-pointer text-sm font-semibold capitalize transition-colors duration-300"
               >
@@ -80,16 +84,17 @@ const Navbar = () => {
                   className="lang-select text-sm bg-white border-2 border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 hover:border-blue-400 transition-all font-semibold text-gray-700"
                   onChange={toggleLanguage}
                   value={language}
+                  aria-label="Select language"
                 >
                   <button>
                     <selectedcontent />
                   </button>
 
-                  <option value="en">
+                  <option value="en" aria-label="Select English language">
                     <img src="/usa-flag.webp" alt="" className="w-5 h-5" />
                     <span>EN</span>
                   </option>
-                  <option value="jp">
+                  <option value="jp" aria-label="Select Japanese language">
                     <img src="/japan-flag.png" alt="" className="w-5 h-5" />
                     <span>JP</span>
                   </option>
@@ -106,6 +111,7 @@ const Navbar = () => {
             {/* CTA BUTTON */}
             <Link
               to={'/composer'}
+              aria-label="Compose new message"
               className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold text-white 
               bg-linear-to-r from-blue-600 to-indigo-600 
               hover:from-blue-700 hover:to-indigo-700 

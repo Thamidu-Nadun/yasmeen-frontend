@@ -55,6 +55,7 @@ const Hero = () => {
       </div>
       <div className="mt-6 sm:mt-8 md:-translate-y-20 page-enter">
         <ButtonLG
+          aria-label="See how it works button"
           onClick={() =>
             window.open (
               'https://github.com/Thamidu-Nadun/yasmeen-backend/blob/main/README.md',
