@@ -186,12 +186,12 @@ const Dispatch = () => {
                   to={`${API_URL}/pdf/download/${emailData.id}`}
                   target='_blank'
                 >
-                  {emailData ? emailData.pdf_path.split (/[/\\]/).pop () : 'N/A'}
+                  {emailData ? emailData.confirmation_pdf_path.split (/[/\\]/).pop () : 'N/A'}
                   <Download className="w-4 h-4 opacity-70 transition-colors" />
                 </Link>
               </div>
             </div>
-
+            
             {/* Action */}
             <button
               onClick={() => handleDispatchMail(emailData.id)}
@@ -203,6 +203,20 @@ const Dispatch = () => {
                   : otherContent.dipatchBtn.jp}
             </button>
 
+          </div>
+
+          <div className="flex items-center gap-2 text-sm text-gray-500">
+            <h2 className="font-medium">
+              {language === 'en' ? 'Additional Document' : '追加ドキュメント'}
+            </h2>
+            <Link
+              to={`${API_URL}/pdf/download/${emailData.id}?type=driver_plan`}
+              target="_blank"
+              className="flex items-center gap-1 text-blue-950 hover:text-blue-600 hover:underline transition"
+            >
+              {language === 'en' ? 'Download Driver Plan' : 'ドライバープランをダウンロード'}
+              <Download className="w-4 h-4 opacity-70 transition-colors" />
+              </Link>
           </div>
         </div>
 
