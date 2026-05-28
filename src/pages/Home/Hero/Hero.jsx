@@ -3,8 +3,6 @@ import {ButtonLG} from '../../../Components/Buttons/Buttons';
 import {LabelSM} from '../../../Components/Labels/Labels';
 import {Fragment, useContext} from 'react';
 import {LanguageContext} from '../../../context/Language';
-import Orbit from '../../../Components/Orbit/Orbit';
-import Orb from '../../../Components/Orbit/Orbit';
 
 const content = {
   label: {
