@@ -107,9 +107,9 @@ const Features = () => {
               {/* Image */}
               <div className="bg-linear-to-br from-green-50 to-green-100 overflow-hidden">
                 <img
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0ZYztO_ony1VT3UJr0UQ2bfb5L1SUMeNGLkH7LtmRuPAYW4yKVE3AVyWN-oHdzAL4ZAKo4gixnqBxuo_jJa-FWoP-p2AhiEvMiV_RaPwbMyHC_MEiH4KJOrtZ1vfwZHVemUAei6ohGc5JTyKJ98y7JXUbeHuJ7yHXUBOFADKQWy077ZxZBBp4s0powa3f_S6mkXPP6lapSOeeAXHn7SBvdGNbe96f5k8T-OQxsBDWHscm2zOp27AT9AhfZTk0jlPy68I9cg2GO2w"
+                  src="/img/workflow.png"
                   alt="PDF Automation"
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
             </div>
