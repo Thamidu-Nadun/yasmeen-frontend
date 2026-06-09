@@ -8,7 +8,7 @@ import Mainlayout from './layout/Mainlayout';
 import {Toaster} from 'react-hot-toast';
 import Emails from './pages/Emails/Emails';
 
-const Hero = lazy (() => import ('./pages/Home/Hero/Hero.jsx'));
+const Home = lazy (() => import ('./pages/Home/Home.jsx'));
 const Composer = lazy (() => import ('./pages/Composer/Composer.jsx'));
 const Logs = lazy (() => import ('./pages/Logs/Logs.jsx'));
 const Dispatch = lazy (() => import ('./pages/Dispatch/Dispatch.jsx'));
@@ -37,7 +37,7 @@ const App = () => {
         >
           <Routes>
             <Route element={<Mainlayout />}>
-              <Route index element={<Hero />} />
+              <Route index element={<Home />} />
               <Route path="/composer" element={<Composer />} />
               <Route path="/logs" element={<Logs />} />
               <Route path="/dispatch/:id" element={<Dispatch />} />

@@ -14,8 +14,16 @@ const content = {
     jp: 'メールからPDFを自動生成して送信し、AIによるスマートな返信に備えましょう。',
   },
   button: {
-    en: 'See How it works',
-    jp: '使い方を見る',
+    cta: {
+      en: 'Try It Now',
+      jp: '今すぐ試す',
+      link: '',
+    },
+    docs: {
+      en: 'See How it works',
+      jp: '使い方を見る',
+      link: 'https://github.com/Thamidu-Nadun/yasmeen-backend/blob/main/README.md',
+    },
   },
 };
 const Hero = () => {
@@ -23,7 +31,7 @@ const Hero = () => {
   console.log (language);
 
   return (
-    <div className="w-full min-h-screen flex flex-col items-center justify-center -translate-y-20 md:translate-y-0 gap-0.5 px-4 sm:px-6 lg:px-8">
+    <div className="w-full min-h-145 flex flex-col items-center justify-center -translate-y-20 md:translate-y-0 gap-0.5 px-4 sm:px-6 lg:px-8">
       <div className="page-enter">
         <LabelSM
           name={language === 'en' ? content.label.en : content.label.jp}
@@ -53,16 +61,23 @@ const Hero = () => {
           {language === 'en' ? content.description.en : content.description.jp}
         </p>
       </div>
-      <div className="mt-6 sm:mt-8 md:-translate-y-20 page-enter">
+      <div className="mt-6 sm:mt-8 md:-translate-y-20 page-enter gap-x-4 flex">
         <ButtonLG
-          aria-label="See how it works button"
-          onClick={() =>
-            window.open (
-              'https://github.com/Thamidu-Nadun/yasmeen-backend/blob/main/README.md',
-              '_blank'
-            )}
-          name={language === 'en' ? content.button.en : content.button.jp}
+          aria-label={
+            language === 'en' ? content.button.cta.en : content.button.cta.jp
+          }
+          onClick={() => window.open (content.button.cta.link, '_blank')}
+          name={
+            language === 'en' ? content.button.cta.en : content.button.cta.jp
+          }
         />
+        <button
+          className="border border-blue-500 px-3 py-2 rounded-xl text-blue-500 hover:bg-blue-500 hover:text-white transition"
+          onClick={() => window.open (content.button.docs.link, '_blank')}
+          aria-label={content.button.docs.en}
+        >
+          {language === 'en' ? content.button.docs.en : content.button.docs.jp}
+        </button>
       </div>
     </div>
   );
