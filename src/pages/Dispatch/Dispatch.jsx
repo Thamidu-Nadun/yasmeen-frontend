@@ -151,7 +151,7 @@ const Dispatch = () => {
           </div>
 
           {/* Card */}
-          <div className="bg-white border rounded-lg p-5 space-y-5 max-w-md">
+          <div className="bg-white shadow-md shadow-gray-300 rounded-lg p-5 max-w-lg space-y-5">
 
             {/* Recipient */}
             <div>
@@ -160,8 +160,8 @@ const Dispatch = () => {
                   ? otherContent.recipient.en
                   : otherContent.recipient.jp}
               </label>
-              <div className="flex items-center text-gray-800">
-                <span className="text-blue-500 font-bold mr-1">@</span>
+              <div className="flex items-center text-gray-800 gap-1">
+                <span className="bg-green-500 px-2 py-0.5 text-white rounded-full text-sm font-bold mr-1">{ emailData? emailData.recipient[0].toUpperCase() : 'J'}</span>
                 {emailData ? emailData.recipient : 'jhon@x.com'}
               </div>
             </div>
@@ -173,20 +173,22 @@ const Dispatch = () => {
                   ? otherContent.subjectLine.en
                   : otherContent.subjectLine.jp}
               </label>
-              <div className="text-gray-800">
+              <div className="text-gray-800 font-semibold">
                 {emailData ? emailData.subject : 'N/A'}
               </div>
             </div>
 
             {/* File */}
-            <div className="flex items-center gap-5 bg-gray-100 rounded-lg px-4 py-3 w-fit">
-              <div className='flex items-center justify-between gap-2'>
+            <div className="flex items-center gap-5 bg-gray-100 rounded-lg px-4 py-3 w-full">
+              <div className='flex items-center justify-between gap-2 w-full'>
+                <div className="flex items-center gap-2 text-gray-800">
                 <img src={PDFICON} alt="pdf icon" className="w-5 h-5" />
+                  <span>{emailData ? emailData.confirmation_pdf_path.split (/[/\\]/).pop () : 'N/A'}</span>
+                </div>
                 <Link className="flex items-center gap-2 text-sm font-semibold text-blue-950 hover:text-blue-600 hover:underline transition"
                   to={`${API_URL}/pdf/download/${emailData.id}`}
                   target='_blank'
                 >
-                  {emailData ? emailData.confirmation_pdf_path.split (/[/\\]/).pop () : 'N/A'}
                   <Download className="w-4 h-4 opacity-70 transition-colors" />
                 </Link>
               </div>
@@ -195,7 +197,7 @@ const Dispatch = () => {
             {/* Action */}
             <button
               onClick={() => handleDispatchMail(emailData.id)}
-              className="w-full sm:w-auto mt-2 px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition focus:ring-2 focus:ring-blue-500">
+              className="w-full mt-2 px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition focus:ring-2 focus:ring-blue-500">
               {loading ? (
                 <div className="inline-block animate-spin rounded-full h-4 w-4 border-b-2 border-white" />
               ) : language === 'en'
@@ -221,7 +223,7 @@ const Dispatch = () => {
         </div>
 
         {/* RIGHT SIDE - PDF PREVIEW */}
-        <div className="h-[70vh] lg:h-auto lg:sticky lg:top-10 border border-dashed rounded-lg p-3 overflow-hidden w-155 relative">
+        <div className="h-[70vh] lg:h-auto lg:sticky lg:top-10 shadow-md shadow-gray-400 rounded-lg p-3 overflow-hidden w-155 relative">
           <div className="h-130 overflow-y-scroll overflow-x-hidden">
             {emailData ? (
               <PdfRender url={`${API_URL}/pdf/download/${emailData.id}`} />

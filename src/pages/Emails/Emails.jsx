@@ -151,8 +151,8 @@ const Emails = () => {
               No emails found
             </div>}
         </div>
-        <div className="mt-6 w-full flex items-center justify-end px-4 py-2">
-          <div className="mr-4 px-2.5 py-1 border rounded-md cursor-pointer border-blue-500 text-blue-500 hover:bg-blue-200 transition">
+        <div className="mt-6 w-full flex items-center justify-center px-4 py-2">
+          <div className="mr-4 px-3 py-1 border rounded-md cursor-pointer border-blue-500 text-blue-500 hover:bg-blue-200 transition">
             Prev
           </div>
           <div className="text-sm text-gray-600">
@@ -160,7 +160,7 @@ const Emails = () => {
             {emails.at (0) ? ` ${emails[0].id}` : ' 0'}{' '}
             to {emails.length} of 100 entries
           </div>
-          <div className="ml-4 px-2.5 py-1 border rounded-md cursor-pointer border-blue-500 text-blue-500 hover:bg-blue-200 transition">
+          <div className="ml-4 px-3 py-1 border rounded-md cursor-pointer border-blue-500 text-blue-500 hover:bg-blue-200 transition">
             Next
           </div>
         </div>
