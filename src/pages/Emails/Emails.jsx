@@ -3,6 +3,7 @@ import {deleteMail, getMails} from '../../services/emailService';
 import {Link} from 'react-router-dom';
 import toast from 'react-hot-toast';
 import {LanguageContext} from '../../context/Language';
+import {Send, Trash, Trash2} from 'lucide-react';
 
 const content = {
   title: {
@@ -89,7 +90,7 @@ const Emails = () => {
                       ? content.table.recipient.en
                       : content.table.recipient.jp}
                   </th>
-                  <th className="px-4 sm:px-6 py-3">
+                  <th className="px-4 sm:px-6 py-3 text-center md:text-right">
                     {language === 'en'
                       ? content.table.action.en
                       : content.table.action.jp}
@@ -117,11 +118,12 @@ const Emails = () => {
                     </td>
 
                     <td className="px-4 sm:px-6 py-3 text-sm">
-                      <div className="flex flex-col items-center gap-2">
+                      <div className="flex flex-col md:flex-row justify-end items-center gap-4">
                         <Link
                           to={`/dispatch/${email.id}`}
-                          className="p-1.5 w-20 text-xs text-center font-medium bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition"
+                          className="py-1.5 px-2 w-20 flex gap-2 items-center text-center font-medium border border-blue-500 hover:bg-blue-600 hover:text-white text-blue-500 rounded-lg transition"
                         >
+                          <Send className="w-4 h-4 inline-block" />
                           {language === 'en'
                             ? content.table.view.en
                             : content.table.view.jp}
@@ -129,8 +131,9 @@ const Emails = () => {
 
                         <div
                           onClick={() => handleDelete (email.id)}
-                          className="p-1.5 w-20 text-xs text-center font-medium bg-red-500 hover:bg-red-600 text-white rounded-lg transition"
+                          className="py-1.5 px-2 w-20 flex items-center gap-2 text-center font-medium border border-red-500 hover:bg-red-600 hover:text-white text-red-500 rounded-lg transition"
                         >
+                          <Trash2 className="w-4 h-4 inline-block" />
                           {language === 'en'
                             ? content.table.delete.en
                             : content.table.delete.jp}
@@ -147,6 +150,19 @@ const Emails = () => {
             <div className="text-center py-10 text-gray-500 text-sm">
               No emails found
             </div>}
+        </div>
+        <div className="mt-6 w-full flex items-center justify-end px-4 py-2">
+          <div className="mr-4 px-2.5 py-1 border rounded-md cursor-pointer border-blue-500 text-blue-500 hover:bg-blue-200 transition">
+            Prev
+          </div>
+          <div className="text-sm text-gray-600">
+            Showing
+            {emails.at (0) ? ` ${emails[0].id}` : ' 0'}{' '}
+            to {emails.length} of 100 entries
+          </div>
+          <div className="ml-4 px-2.5 py-1 border rounded-md cursor-pointer border-blue-500 text-blue-500 hover:bg-blue-200 transition">
+            Next
+          </div>
         </div>
       </div>
     </div>

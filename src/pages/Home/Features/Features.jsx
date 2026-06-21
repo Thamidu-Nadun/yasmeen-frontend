@@ -84,10 +84,10 @@ const Features = () => {
       <div className="grid grid-cols-1 grid-rows-2 lg:grid-cols-5 gap-6">
         {/* row -1 card 1 */}
         <div className="lg:col-span-3 group h-70">
-          <div className="h-full overflow-hidden rounded-xl bg-white shadow-lg shadow-gray-200 hover:shadow-gray-300 transition-shadow duration-300">
+          <div className="h-full overflow-hidden rounded-xl bg-white shadow-md shadow-gray-200 hover:shadow-gray-300 transition-shadow duration-300">
             <div className="grid md:grid-cols-2 h-full">
               <div className="p-8">
-                <div className="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center mb-5 group-hover:scale-110 transition-all duration-300">
+                <div className="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center mb-5 group-hover:scale-110 group-hover:rotate-2 transition-all duration-300">
                   <File className="w-6 h-6 text-blue-600" />
                 </div>
 
@@ -105,11 +105,11 @@ const Features = () => {
               </div>
 
               {/* Image */}
-              <div className="bg-linear-to-br from-green-50 to-green-100 overflow-hidden">
+              <div className="overflow-hidden bg-red-100 w-full h-full">
                 <img
-                  src="/img/workflow.png"
+                  src="/img/humaans-2.png"
                   alt="PDF Automation"
-                  className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-100"
                 />
               </div>
             </div>
@@ -117,7 +117,7 @@ const Features = () => {
         </div>
         {/* row -1 card 2 */}
         <div className="lg:col-span-2 h-70 group">
-          <div className="h-full rounded-xl shadow-lg shadow-gray-200 hover:shadow-gray-300 transition-shadow duration-300 bg-white p-8">
+          <div className="h-full rounded-xl shadow-md shadow-gray-200 hover:shadow-gray-300 transition-shadow duration-300 bg-white p-8">
             <div className="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center group-hover:scale-110 group-hover:rotate-2 transition-all duration-300 mb-5">
               <Stars className="w-6 h-6 text-blue-600" />
             </div>
@@ -139,7 +139,7 @@ const Features = () => {
         {/* row 2 */}
         {/* row -2 card 1 */}
         <div className="lg:col-span-2 group h-60">
-          <div className="h-full overflow-hidden rounded-xl bg-white shadow-xl shadow-gray-200 hover:shadow-gray-300 transition-shadow duration-300">
+          <div className="h-full overflow-hidden rounded-xl bg-white shadow-md shadow-gray-200 hover:shadow-gray-300 transition-shadow duration-300">
             <div className="p-6">
               <div className="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center group-hover:scale-105 group-hover:rotate-10 transition-all duration-300  mb-5">
                 <TerminalSquare className="w-6 h-6 text-blue-600" />
@@ -161,7 +161,7 @@ const Features = () => {
         </div>
         {/* row -2 card 2 */}
         <div className="lg:col-span-3 group h-60">
-          <div className="h-full rounded-xl bg-white p-6 shadow-xl shadow-gray-200 hover:shadow-gray-300 transition-shadow duration-300">
+          <div className="h-full rounded-xl bg-white p-6 shadow-md shadow-gray-200 hover:shadow-gray-300 transition-shadow duration-300">
             <div className="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center group-hover:scale-105 group-hover:rotate-5 transition-all duration-300 mb-5">
               <ShieldCheck className="w-6 h-6 text-blue-600" />
             </div>

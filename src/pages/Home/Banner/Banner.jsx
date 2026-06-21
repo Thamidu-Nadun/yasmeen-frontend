@@ -22,7 +22,7 @@ const Banner = () => {
   const {language} = useContext (LanguageContext);
   return (
     <div className="w-full px-4 sm:px-8 lg:px-20 py-8">
-      <div className="flex h-60 flex-col items-center justify-center rounded-2xl border border-blue-200 bg-blue-50 text-center shadow-sm">
+      <div className="flex h-60 py-4 flex-col items-center justify-center rounded-2xl border border-blue-200 bg-blue-50 text-center shadow-sm">
         <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-blue-100">
           <RefreshCcw className="h-8 w-8 text-blue-600" />
         </div>
