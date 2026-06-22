@@ -105,7 +105,7 @@ const Features = () => {
               </div>
 
               {/* Image */}
-              <div className="overflow-hidden bg-red-100 w-full h-full">
+              <div className="overflow-hidden hidden md:block bg-red-100 w-full h-full">
                 <img
                   src="/img/humaans-2.png"
                   alt="PDF Automation"
