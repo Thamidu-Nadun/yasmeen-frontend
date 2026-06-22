@@ -28,7 +28,7 @@ const Navbar = () => {
   return (
     <Fragment>
       {/* NAVBAR */}
-      <nav className="fixed top-0 left-0 right-0 z-50 overflow-hidden backdrop-blur-xl bg-white/80 border-b border-blue-200/30 shadow-sm-lg">
+      <nav className="sticky top-0 left-0 right-0 z-50 overflow-hidden backdrop-blur-xl bg-white/80 border-b border-blue-200/30 shadow-sm-lg">
         <div
           aria-label="company logo"
           className="flex items-center justify-between px-4 sm:px-6 lg:px-8 h-16"
